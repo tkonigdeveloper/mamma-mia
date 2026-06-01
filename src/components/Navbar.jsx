@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import { formatPrice } from "../utils/formatPrice";
 
 const Navbar = () => {
-  const total = 25000;
+  const { total } = useCart();
   const token = false;
 
   return (
@@ -9,7 +11,9 @@ const Navbar = () => {
       <span className="navbar-brand fw-bold">Pizzería Mamma Mia!</span>
 
       <div className="d-flex gap-2">
-        <button className="btn btn-sm btn-secondary">🍕 Home</button>
+        <Link to="/home" className="btn btn-sm btn-secondary">
+          🍕 Home
+        </Link>
 
         {token ? (
           <>
@@ -23,9 +27,9 @@ const Navbar = () => {
           </>
         )}
 
-        <button className="btn btn-sm btn-warning">
+        <Link to="/carrito" className="btn btn-sm btn-warning">
           🛒 Total: ${formatPrice(total)}
-        </button>
+        </Link>
       </div>
     </nav>
   );
